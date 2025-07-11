@@ -1,0 +1,32 @@
+/* eslint-disable prettier/prettier */
+import { Type } from "class-transformer";
+import { IsDate, IsEmail, IsNotEmpty, IsString, IsStrongPassword, MaxLength } from "class-validator";
+
+/* eslint-disable prettier/prettier */
+export class CreateUserDto {
+        @IsString()
+        @IsNotEmpty()
+        username: string;
+
+        @IsString()
+        @IsStrongPassword()
+        @MaxLength(8, {message: 'Password must be 8 characters'})
+        password_hash: string;
+    
+        @IsEmail()
+        @IsNotEmpty()
+        email: string;
+    
+        @IsString()
+        @IsNotEmpty()
+        full_name: string;
+    
+        @Type(() => Date)
+        @IsDate()
+        created_at: Date;
+    
+        @Type(() => Date)
+        @IsDate()
+        updated_at: Date;
+    
+}
