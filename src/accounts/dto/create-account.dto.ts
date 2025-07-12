@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 
-import { IsDate, IsDecimal, IsNotEmpty, IsString } from "class-validator";
+import { IsDecimal, IsNotEmpty, IsString } from "class-validator";
 import { AType } from "../entities/aType.enum";
 
 /* eslint-disable prettier/prettier */
@@ -20,9 +20,4 @@ export class CreateAccountDto {
         @IsString()
         @IsNotEmpty()
         currency: string;
-        @IsDate()
-        created_at: Date;
-        @IsDate()
-        updated_at: Date;
-
 }

@@ -8,7 +8,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post('/createUser/company/:id/role/:id')
+  @Post('/createUser/company/:id/role/:role_id')
   create(@Param('id', ParseIntPipe) id: number,
   @Param('role_id', ParseIntPipe) role_id: number,
   @Body() createUserDto: CreateUserDto) {

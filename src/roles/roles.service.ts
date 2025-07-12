@@ -28,7 +28,6 @@ export class RolesService {
   update(id: number, updateRoleDto: UpdateRoleDto) {
     return this.roleRepository.update(id, updateRoleDto);
   }
-
   remove(id: number) {
     return this.roleRepository.delete(id);
   }

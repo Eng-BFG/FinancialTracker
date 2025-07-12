@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Type } from "class-transformer";
-import { IsDate, IsEmail, IsNotEmpty, IsString, IsStrongPassword, MaxLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, IsStrongPassword, MaxLength } from "class-validator";
 
 /* eslint-disable prettier/prettier */
 export class CreateUserDto {
@@ -19,14 +18,5 @@ export class CreateUserDto {
     
         @IsString()
         @IsNotEmpty()
-        full_name: string;
-    
-        @Type(() => Date)
-        @IsDate()
-        created_at: Date;
-    
-        @Type(() => Date)
-        @IsDate()
-        updated_at: Date;
-    
+        full_name: string; 
 }

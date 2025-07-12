@@ -3,7 +3,7 @@ import { Account } from "src/accounts/entities/account.entity";
 import { Budget } from "src/budgets/entities/budget.entity";
 import { Company } from "src/company/entities/company.entity";
 import { Role } from "src/roles/entities/role.entity";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -22,17 +22,20 @@ export class User {
     @Column()
     full_name: string;
 
-    @Column()
+    @CreateDateColumn()
     created_at: Date;
 
-    @Column()
+    @UpdateDateColumn()
     updated_at: Date;
 
-    @OneToOne(() => Role, role => role.user, {nullable: false})
+    @OneToOne(() => Role, role => role.user, {
+        cascade: true, 
+        nullable: true, 
+        eager: true})
     @JoinColumn()
     role: Role
 
-    @ManyToOne(() => Company, company => company.worker, {nullable: false})
+    @ManyToOne(() => Company, company => company.worker)
     company: Company
 
     @OneToMany(() => Account, account => account.user)

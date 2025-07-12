@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 
 import { User } from "src/users/entities/user.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { AType } from "./aType.enum";
 import { Transaction } from "src/transactions/entities/transaction.entity";
 
@@ -26,9 +26,9 @@ export class Account {
     current_balance: number;
     @Column()
     currency: string;
-    @Column({type: 'timestamp'})
+    @CreateDateColumn()
     created_at: Date;
-    @Column({type: 'timestamp'})
+    @UpdateDateColumn()
     updated_at: Date;
 
     @ManyToOne(() => User, user => user.accounts)

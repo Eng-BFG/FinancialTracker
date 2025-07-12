@@ -14,8 +14,9 @@ export class CompanyService {
   constructor(
     @InjectRepository(Company) private readonly companyRepository: Repository<Company>,
     ){}
-  create(createCompanyDto: CreateCompanyDto) {
-    return this.companyRepository.create(createCompanyDto)
+  async create(createCompanyDto: CreateCompanyDto): Promise<Company> {
+    const newCompany = this.companyRepository.create(createCompanyDto)
+    return this.companyRepository.save(newCompany)
   }
 
   findAll() {
