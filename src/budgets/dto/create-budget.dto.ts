@@ -11,9 +11,4 @@ export class CreateBudgetDto {
     start_date: Date;
     @IsDate()
     end_date: Date;
-    @IsDate()
-    created_at: Date;
-    @IsDate()
-    updated_date: Date;
-
-}
+   }

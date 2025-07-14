@@ -40,7 +40,7 @@ let BudgetitemsController = class BudgetitemsController {
 };
 exports.BudgetitemsController = BudgetitemsController;
 __decorate([
-    (0, common_1.Post)('/createItem/budgetitem/:id'),
+    (0, common_1.Post)('/createItem/budget/:id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

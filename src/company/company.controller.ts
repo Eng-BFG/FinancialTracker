@@ -25,7 +25,7 @@ export class CompanyController {
   }
 
   @Patch('/updatingCompany/:id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
+  update(@Param('id') id: string, updateCompanyDto: UpdateCompanyDto) {
     return this.companyService.update(+id, updateCompanyDto);
   }
 

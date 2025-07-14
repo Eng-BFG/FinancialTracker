@@ -41,11 +41,11 @@ __decorate([
     __metadata("design:type", Date)
 ], Budget.prototype, "end_date", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
+    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Budget.prototype, "created_at", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
+    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
     __metadata("design:type", Date)
 ], Budget.prototype, "updated_date", void 0);
 __decorate([

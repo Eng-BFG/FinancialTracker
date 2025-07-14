@@ -15,10 +15,8 @@ const ttype_enum_1 = require("../entities/ttype.enum");
 class CreateTransactionDto {
     transaction_type;
     amount;
-    transaction_Date;
     description;
     category;
-    updated_at;
 }
 exports.CreateTransactionDto = CreateTransactionDto;
 __decorate([
@@ -31,11 +29,6 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateTransactionDto.prototype, "amount", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Date)
-], CreateTransactionDto.prototype, "transaction_Date", void 0);
-__decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], CreateTransactionDto.prototype, "description", void 0);
@@ -44,8 +37,4 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateTransactionDto.prototype, "category", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
-], CreateTransactionDto.prototype, "updated_at", void 0);
 //# sourceMappingURL=create-transaction.dto.js.map

@@ -30,6 +30,12 @@ let TransactionsController = class TransactionsController {
     findOne(id) {
         return this.transactionsService.findOne(+id);
     }
+    getTotalSummary() {
+        return this.transactionsService.getTotalTransactionsSummary();
+    }
+    getMonthlySummary() {
+        return this.transactionsService.getCurrentMonthTransactionsSummary();
+    }
 };
 exports.TransactionsController = TransactionsController;
 __decorate([
@@ -52,6 +58,18 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], TransactionsController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Get)('summary/total'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TransactionsController.prototype, "getTotalSummary", null);
+__decorate([
+    (0, common_1.Get)('summary/monthly'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], TransactionsController.prototype, "getMonthlySummary", null);
 exports.TransactionsController = TransactionsController = __decorate([
     (0, common_1.Controller)('transactions'),
     __metadata("design:paramtypes", [transactions_service_1.TransactionsService])

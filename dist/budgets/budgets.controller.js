@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BudgetsController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Get)('/oneBudget/:id/:user_id'),
+    (0, common_1.Get)('/oneBudget/:id/user/:user_id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

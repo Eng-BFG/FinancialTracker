@@ -17,6 +17,7 @@ import { Transaction } from './transactions/entities/transaction.entity';
 import { Account } from './accounts/entities/account.entity';
 import { Budget } from './budgets/entities/budget.entity';
 import { Budgetitem } from './budgetitems/entities/budgetitem.entity';
+import { BudgetitemsModule } from './budgetitems/budgetitems.module';
 
 @Module({
   imports: [
@@ -45,7 +46,7 @@ import { Budgetitem } from './budgetitems/entities/budgetitem.entity';
   TransactionsModule,
   BudgetsModule,
   CompanyModule,
-
+  BudgetitemsModule
   ],
   controllers: [AppController],
   providers: [AppService],

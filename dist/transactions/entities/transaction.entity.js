@@ -17,9 +17,9 @@ let Transaction = class Transaction {
     transaction_id;
     transaction_type;
     amount;
-    transaction_Date;
     description;
     category;
+    transaction_Date;
     updated_at;
     account;
 };
@@ -41,10 +41,6 @@ __decorate([
     __metadata("design:type", Number)
 ], Transaction.prototype, "amount", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
-    __metadata("design:type", Date)
-], Transaction.prototype, "transaction_Date", void 0);
-__decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Transaction.prototype, "description", void 0);
@@ -53,7 +49,11 @@ __decorate([
     __metadata("design:type", String)
 ], Transaction.prototype, "category", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp' }),
+    (0, typeorm_1.CreateDateColumn)(),
+    __metadata("design:type", Date)
+], Transaction.prototype, "transaction_Date", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], Transaction.prototype, "updated_at", void 0);
 __decorate([

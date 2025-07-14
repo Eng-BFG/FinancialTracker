@@ -25,6 +25,7 @@ const transaction_entity_1 = require("./transactions/entities/transaction.entity
 const account_entity_1 = require("./accounts/entities/account.entity");
 const budget_entity_1 = require("./budgets/entities/budget.entity");
 const budgetitem_entity_1 = require("./budgetitems/entities/budgetitem.entity");
+const budgetitems_module_1 = require("./budgetitems/budgetitems.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -55,6 +56,7 @@ exports.AppModule = AppModule = __decorate([
             transactions_module_1.TransactionsModule,
             budgets_module_1.BudgetsModule,
             company_module_1.CompanyModule,
+            budgetitems_module_1.BudgetitemsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

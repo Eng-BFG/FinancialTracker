@@ -8,7 +8,7 @@ import { UpdateBudgetitemDto } from './dto/update-budgetitem.dto';
 export class BudgetitemsController {
   constructor(private readonly budgetitemsService: BudgetitemsService) {}
 
-  @Post('/createItem/budgetitem/:id')
+  @Post('/createItem/budget/:id')
   create(@Param('id', ParseIntPipe) id: number,
    @Body() createBudgetitemDto: CreateBudgetitemDto) {
     return this.budgetitemsService.create(id, createBudgetitemDto);

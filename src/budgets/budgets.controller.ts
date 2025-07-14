@@ -19,7 +19,7 @@ export class BudgetsController {
     return this.budgetsService.findAll();
   }
 
-  @Get('/oneBudget/:id/:user_id')
+  @Get('/oneBudget/:id/user/:user_id')
   findOne(@Param('id') id: number) {
     return this.budgetsService.findOne(+id);
   }

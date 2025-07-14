@@ -16,8 +16,6 @@ class CreateBudgetDto {
     budget_amount;
     start_date;
     end_date;
-    created_at;
-    updated_date;
 }
 exports.CreateBudgetDto = CreateBudgetDto;
 __decorate([
@@ -33,12 +31,4 @@ __decorate([
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], CreateBudgetDto.prototype, "end_date", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
-], CreateBudgetDto.prototype, "created_at", void 0);
-__decorate([
-    (0, class_validator_1.IsDate)(),
-    __metadata("design:type", Date)
-], CreateBudgetDto.prototype, "updated_date", void 0);
 //# sourceMappingURL=create-budget.dto.js.map

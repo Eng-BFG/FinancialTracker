@@ -22,5 +22,14 @@ export class TransactionsController {
     return this.transactionsService.findOne(+id);
   }
 
+    @Get('summary/total')
+  getTotalSummary() {
+    return this.transactionsService.getTotalTransactionsSummary();
+  }
+
+  @Get('summary/monthly')
+  getMonthlySummary() {
+    return this.transactionsService.getCurrentMonthTransactionsSummary();
+  }
  
 }
