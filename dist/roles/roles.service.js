@@ -33,11 +33,21 @@ let RolesService = class RolesService {
             where: { role_id: id }
         });
     }
-    update(id, updateRoleDto) {
-        return this.roleRepository.update(id, updateRoleDto);
+    async update(id, updateroleDto) {
+        const role = await this.roleRepository.findOne({
+            where: { role_id: id }
+        });
+        if (!role) {
+            throw new common_1.NotFoundException(`Role with ID ${id} not found`);
+        }
+        Object.assign(role, updateroleDto);
+        return this.roleRepository.save(role);
     }
-    remove(id) {
-        return this.roleRepository.delete(id);
+    async remove(id) {
+        const result = await this.roleRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException(`Company with ID ${id} not found`);
+        }
     }
 };
 exports.RolesService = RolesService;

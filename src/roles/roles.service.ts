@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -25,10 +25,21 @@ export class RolesService {
     });
   }
 
-  update(id: number, updateRoleDto: UpdateRoleDto) {
-    return this.roleRepository.update(id, updateRoleDto);
-  }
-  remove(id: number) {
-    return this.roleRepository.delete(id);
-  }
+  async update(id: number, updateroleDto: UpdateRoleDto): Promise<Role> {
+      const role = await this.roleRepository.findOne({
+        where: {role_id: id}
+      });
+      if (!role) {
+        throw new NotFoundException(`Role with ID ${id} not found`);
+      }
+      Object.assign(role, updateroleDto);
+      return this.roleRepository.save(role);
+      }
+    
+      async remove(id: number) {
+      const result = await this.roleRepository.delete(id);
+      if (result.affected === 0) {
+        throw new NotFoundException(`Company with ID ${id} not found`);
+      }
+    }
 }

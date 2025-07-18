@@ -38,11 +38,21 @@ export class BudgetitemsService {
     });
   }
 
-  update(id: number, updateBudgetitemDto: UpdateBudgetitemDto) {
-    return this.budgetitemRepository.update(id, updateBudgetitemDto);
-  }
-
-  remove(id: number) {
-    return this.budgetitemRepository.delete(id);
-  }
+  async update(id: number, updatebudgetitemDto: UpdateBudgetitemDto): Promise<Budgetitem> {
+      const item = await this.budgetitemRepository.findOne({
+        where: {budget_item_id: id}
+      });
+      if (!item) {
+        throw new NotFoundException(`Item with ID ${id} not found`);
+      }
+      Object.assign(item, updatebudgetitemDto);
+      return this.budgetitemRepository.save(item);
+      }
+    
+      async remove(id: number) {
+      const result = await this.budgetitemRepository.delete(id);
+      if (result.affected === 0) {
+        throw new NotFoundException(`Item with ID ${id} not found`);
+      }
+    }
 }

@@ -25,12 +25,12 @@ export class BudgetsController {
   }
 
   @Patch('/updatingBudget/:id')
-  update(@Param('id') id: string, @Body() updateBudgetDto: UpdateBudgetDto) {
+  update(@Param('id') id: number, @Body() updateBudgetDto: UpdateBudgetDto) {
     return this.budgetsService.update(+id, updateBudgetDto);
   }
 
   @Delete('/deletingBudget/:id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.budgetsService.remove(+id);
   }
 }

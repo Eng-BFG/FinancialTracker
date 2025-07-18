@@ -18,12 +18,15 @@ const typeorm_1 = require("@nestjs/typeorm");
 const budget_entity_1 = require("./entities/budget.entity");
 const typeorm_2 = require("typeorm");
 const user_entity_1 = require("../users/entities/user.entity");
+const budgetitem_entity_1 = require("../budgetitems/entities/budgetitem.entity");
 let BudgetsService = class BudgetsService {
     budgetRepository;
     userRepository;
-    constructor(budgetRepository, userRepository) {
+    budgetitemRepository;
+    constructor(budgetRepository, userRepository, budgetitemRepository) {
         this.budgetRepository = budgetRepository;
         this.userRepository = userRepository;
+        this.budgetitemRepository = budgetitemRepository;
     }
     async create(id, createBudgetDto) {
         const budget = this.budgetRepository.create(createBudgetDto);
@@ -32,7 +35,7 @@ let BudgetsService = class BudgetsService {
             relations: ['budgets']
         });
         if (!user) {
-            throw new common_1.NotFoundException('User with ID' + { id } + 'does not exist');
+            throw new common_1.NotFoundException('User with ID ${id} does not exist');
         }
         budget.creator = user;
         return this.budgetRepository.save(budget);
@@ -46,11 +49,21 @@ let BudgetsService = class BudgetsService {
             relations: ['budgets', 'for_budget']
         });
     }
-    update(id, updateBudgetDto) {
-        return this.budgetRepository.update(id, updateBudgetDto);
+    async update(id, updatebudgetDto) {
+        const budget = await this.budgetRepository.findOne({
+            where: { budget_id: id }
+        });
+        if (!budget) {
+            throw new common_1.NotFoundException(`budget with ID ${id} not found`);
+        }
+        Object.assign(budget, updatebudgetDto);
+        return this.budgetRepository.save(budget);
     }
-    remove(id) {
-        return this.budgetRepository.delete(id);
+    async remove(id) {
+        const result = await this.budgetRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException(`Item with ID ${id} not found`);
+        }
     }
 };
 exports.BudgetsService = BudgetsService;
@@ -58,7 +71,9 @@ exports.BudgetsService = BudgetsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(budget_entity_1.Budget)),
     __param(1, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __param(2, (0, typeorm_1.InjectRepository)(budgetitem_entity_1.Budgetitem)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         typeorm_2.Repository])
 ], BudgetsService);
 //# sourceMappingURL=budgets.service.js.map

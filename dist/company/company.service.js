@@ -34,11 +34,21 @@ let CompanyService = class CompanyService {
             where: { id: id }
         });
     }
-    update(id, updateCompanyDto) {
-        return this.companyRepository.update(id, updateCompanyDto);
+    async update(id, updatecompanyDto) {
+        const company = await this.companyRepository.findOne({
+            where: { id: id }
+        });
+        if (!company) {
+            throw new common_1.NotFoundException(`company with ID ${id} not found`);
+        }
+        Object.assign(company, updatecompanyDto);
+        return this.companyRepository.save(company);
     }
-    remove(id) {
-        return this.companyRepository.delete(id);
+    async remove(id) {
+        const result = await this.companyRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException(`Company with ID ${id} not found`);
+        }
     }
 };
 exports.CompanyService = CompanyService;

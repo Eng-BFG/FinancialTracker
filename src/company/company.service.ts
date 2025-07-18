@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -29,11 +29,28 @@ export class CompanyService {
     });
   }
 
-  update(id: number, updateCompanyDto: UpdateCompanyDto) {
+  async update(id: number, updatecompanyDto: UpdateCompanyDto): Promise<Company> {
+    const company = await this.companyRepository.findOne({
+      where: {id: id}
+    });
+    if (!company) {
+      throw new NotFoundException(`company with ID ${id} not found`);
+    }
+    Object.assign(company, updatecompanyDto);
+    return this.companyRepository.save(company);
+    }
+  
+    async remove(id: number) {
+    const result = await this.companyRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Company with ID ${id} not found`);
+    }
+  }
+  /*update(id: number, updateCompanyDto: UpdateCompanyDto) {
     return this.companyRepository.update(id, updateCompanyDto);
   }
 
   remove(id: number) {
     return this.companyRepository.delete(id);
-  }
+  }*/
 }

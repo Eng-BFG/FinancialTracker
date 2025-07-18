@@ -8,6 +8,6 @@ export declare class CompanyService {
     create(createCompanyDto: CreateCompanyDto): Promise<Company>;
     findAll(): Promise<Company[]>;
     findOne(id: number): Promise<Company | null>;
-    update(id: number, updateCompanyDto: UpdateCompanyDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: number): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updatecompanyDto: UpdateCompanyDto): Promise<Company>;
+    remove(id: number): Promise<void>;
 }

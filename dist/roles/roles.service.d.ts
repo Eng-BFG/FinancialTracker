@@ -8,6 +8,6 @@ export declare class RolesService {
     create(createRoleDto: CreateRoleDto): Promise<CreateRoleDto & Role>;
     findAll(): Promise<Role[]>;
     findOne(id: number): Promise<Role | null>;
-    update(id: number, updateRoleDto: UpdateRoleDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: number): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updateroleDto: UpdateRoleDto): Promise<Role>;
+    remove(id: number): Promise<void>;
 }

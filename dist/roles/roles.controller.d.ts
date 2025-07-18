@@ -7,6 +7,6 @@ export declare class RolesController {
     create(createRoleDto: CreateRoleDto): Promise<CreateRoleDto & import("./entities/role.entity").Role>;
     findAll(): Promise<import("./entities/role.entity").Role[]>;
     findOne(id: number): Promise<import("./entities/role.entity").Role | null>;
-    update(id: number, updateRoleDto: UpdateRoleDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: number): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updateRoleDto: UpdateRoleDto): Promise<import("./entities/role.entity").Role>;
+    remove(id: number): Promise<void>;
 }

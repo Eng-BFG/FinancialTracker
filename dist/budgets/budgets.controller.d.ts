@@ -7,6 +7,6 @@ export declare class BudgetsController {
     create(id: number, createBudgetDto: CreateBudgetDto): Promise<import("./entities/budget.entity").Budget>;
     findAll(): Promise<import("./entities/budget.entity").Budget[]>;
     findOne(id: number): Promise<import("./entities/budget.entity").Budget | null>;
-    update(id: string, updateBudgetDto: UpdateBudgetDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: string): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updateBudgetDto: UpdateBudgetDto): Promise<import("./entities/budget.entity").Budget>;
+    remove(id: number): Promise<void>;
 }

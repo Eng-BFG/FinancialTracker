@@ -56,11 +56,15 @@ let UsersService = class UsersService {
             where: { user_id: id }
         });
     }
-    update(id, updateUserDto) {
-        return this.userRepository.update(id, updateUserDto);
-    }
-    remove(id) {
-        return this.userRepository.delete(id);
+    async update(id, updateUserDto) {
+        const user = await this.userRepository.findOne({
+            where: { user_id: id }
+        });
+        if (!user) {
+            throw new common_1.NotFoundException(`user with ID ${id} not found`);
+        }
+        Object.assign(user, updateUserDto);
+        return this.userRepository.save(user);
     }
 };
 exports.UsersService = UsersService;

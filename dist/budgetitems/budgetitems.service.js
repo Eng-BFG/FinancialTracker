@@ -46,11 +46,21 @@ let BudgetitemsService = class BudgetitemsService {
             relations: ['items']
         });
     }
-    update(id, updateBudgetitemDto) {
-        return this.budgetitemRepository.update(id, updateBudgetitemDto);
+    async update(id, updatebudgetitemDto) {
+        const item = await this.budgetitemRepository.findOne({
+            where: { budget_item_id: id }
+        });
+        if (!item) {
+            throw new common_1.NotFoundException(`Item with ID ${id} not found`);
+        }
+        Object.assign(item, updatebudgetitemDto);
+        return this.budgetitemRepository.save(item);
     }
-    remove(id) {
-        return this.budgetitemRepository.delete(id);
+    async remove(id) {
+        const result = await this.budgetitemRepository.delete(id);
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException(`Item with ID ${id} not found`);
+        }
     }
 };
 exports.BudgetitemsService = BudgetitemsService;

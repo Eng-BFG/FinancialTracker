@@ -8,6 +8,6 @@ export declare class CompanyController {
     create(createCompanyDto: CreateCompanyDto): Promise<Company>;
     findAll(): Promise<Company[]>;
     findOne(id: string): Promise<Company | null>;
-    update(id: string, updateCompanyDto: UpdateCompanyDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: string): Promise<import("typeorm").DeleteResult>;
+    update(id: string, updateCompanyDto: UpdateCompanyDto): Promise<Company>;
+    remove(id: string): Promise<void>;
 }

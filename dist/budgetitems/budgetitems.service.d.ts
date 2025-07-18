@@ -10,6 +10,6 @@ export declare class BudgetitemsService {
     create(id: number, createBudgetitemDto: CreateBudgetitemDto): Promise<Budgetitem>;
     findAll(): Promise<Budgetitem[]>;
     findOne(id: number): Promise<Budgetitem | null>;
-    update(id: number, updateBudgetitemDto: UpdateBudgetitemDto): Promise<import("typeorm").UpdateResult>;
-    remove(id: number): Promise<import("typeorm").DeleteResult>;
+    update(id: number, updatebudgetitemDto: UpdateBudgetitemDto): Promise<Budgetitem>;
+    remove(id: number): Promise<void>;
 }
